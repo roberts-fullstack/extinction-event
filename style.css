@@ -4,6 +4,7 @@
   justify-content: space-around;
   align-items: center;
   height: 1200px;
+ 
 }
 
 #row {
@@ -14,6 +15,7 @@
 img {
   width: 162px;
   transition: 2s width;
+
 }
 
 ul li {
