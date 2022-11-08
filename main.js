@@ -1,91 +1,98 @@
-//1. querySelectorAll
-//#ord-dinos -> parent id
+// ===== VARIABLES =====
 
-let dinolist1 = document.querySelectorAll('#ord-dinos li');
+let crossList = document.querySelectorAll(".cross-list li");
+let fadeAway = document.querySelectorAll(".fade-away li");
+let imgShrink = document.querySelector(".img-shrink");
+let imgShrink2 = document.querySelectorAll(".img-shrink img");
+let destroyAll = document.querySelector("#destroy-all");
 
-function olStrike(){
-    for(let i = 0; i < dinolist1.length; i++){
-        dinolist1[i].addEventListener('click', function(){
-            console.log(dinolist1[i].innerText);
-            dinolist1[i].style.textDecoration = 'line-through';
+
+// ===== TESTS =====
+
+console.log(crossList);
+console.log(fadeAway);
+console.log(imgShrink);
+console.log(imgShrink2);
+
+// ========== PROGRAM ==========
+
+crossSwitch(crossList);
+opacitySwitch(fadeAway);
+collapseSwitch(imgShrink);
+
+// ===== DESTROY ALL ====
+
+destroyAll.addEventListener("click", function(){
+
+    extinguishAll(crossList,fadeAway,imgShrink2);
+
+})
+
+
+// ========== FUNCTIONS ===========
+
+function crossSwitch(array){
+    for (let i = 0; i < array.length; i++) {
+    
+        array[i].addEventListener('click', function(){
+    
+            if (array[i].style.textDecoration !== "line-through solid red"){
+                array[i].style.textDecoration = "line-through solid red";
+            } else {
+                array[i].style.textDecoration = "none";
+            }
+    
+        })
+        
+    }
+}
+
+function opacitySwitch(array){
+    for (let i = 0; i < array.length; i++) {
+    
+        array[i].addEventListener('click', function(){
+    
+            if(array[i].style.opacity !== "0" ){
+                array[i].style.opacity = "0";
+            } else {
+                array[i].style.opacity = "100";
+            }
         })
     }
 }
-olStrike();
 
-//#unord-dinos -> parent div
+function collapseSwitch(imgVar){
 
-//Below is the querySelectorAll method to change unord list style
-// let dinolist2 = document.querySelectorAll('#unord-dinos li');
-
-// function ulDisappear(){
-//     for(let i = 0; i < dinolist2.length; i++){
-//         dinolist2[i].addEventListener('click', function(){
-//             dinolist2[i].style.opacity = '0';
-//         })
-//     }
-// }
-
-//Below is the event target method to change unord list style
-let dinolist2 = document.querySelector('#unord-dinos');
-
-function ulDisappear(){
-dinolist2.addEventListener('click', function(event){
+    imgVar.addEventListener("click", function(event){
+        element = event.target;
     
-    let element = event.target;
-    console.log(element.innerText);
-
-    element.style.opacity = '0';
-
+        if (element.style.width !== "0px"){
+            element.style.width = "0px";
+        }
+    
     })
 }
 
-ulDisappear();
+function extinguishAll(array1,array2,array3){
 
-let dinoRow = document.querySelectorAll('#row img');
+    for (let i = 0; i < array1.length; i++) {
+    
+        array1[i].style.textDecoration = "line-through solid red"
 
-function rowCollapse(){
-    for(let i = 0; i < dinoRow.length; i++){
-        dinoRow[i].addEventListener('click', function(){
-            // console.log(dinoRow[i]);
-        dinoRow[i].style.width = 0;
-        })
-    }
-}
-
-rowCollapse();
-
-
-let meteorBtn = document.querySelector('#destroy-all');
-meteorBtn.addEventListener('click', function(){
-    removeAll(arr1,arr2,arr3);
-});
-
-let arr1 = document.querySelectorAll('#ord-dinos li');
-let arr2 = document.querySelectorAll('#unord-dinos');
-let arr3 = document.querySelectorAll('#row img');
-
-function removeAll(arr1, arr2, arr3){
-    for(let i = 0; i < arr1.length; i++) {
-        
-        
-            arr1[i].style.textDecoration = 'line-through solid black'; 
-        
         }
-
-    for(let i = 0; i < arr2.length; i++) {
-        
-         
-            arr2[i].style.opacity = '0'; 
-
-        }   
     
+    for (let i = 0; i < array2.length; i++) {
 
-    for(let i = 0; i < arr3.length; i++) {
+        array2[i].style.opacity = "0";
+
+    }
+
+    for (let i = 0; i < array3.length; i++) {
+
+        array3[i].style.width = "0px";
+
+    }
         
-            arr3[i].style.width = '0px';
-
-            }  
-    
 }
-    // removeAll(arr1,arr2,arr3);
+
+
